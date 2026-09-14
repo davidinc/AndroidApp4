@@ -9,6 +9,14 @@ android {
             minorApiLevel = 1
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.dawit.androidapp4"
@@ -42,4 +50,25 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    // RecyclerView
+    implementation(libs.androidx.recyclerview)
+
+    // Lifecycle and ViewModel
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Retrofit and JSON
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+    implementation(libs.gson)
+
+    // Artwork loading
+    implementation(libs.glide)
+
+    // Coroutines
+    implementation(libs.coroutines.android)
+
+    // Media3 podcast playback
+    implementation(libs.media3.exoplayer)
+    implementation(libs.media3.ui)
 }
