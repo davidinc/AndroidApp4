@@ -27,4 +27,19 @@
 
     <!-- Initial message displayed before the first search. -->
     <string name="initial_status">Search for a podcast topic to begin.</string>
+
+    <!-- Accessibility description for the episode play button. -->
+    <string name="play_episode">Play episode</string>
+
+    <!-- Fallback text when the RSS feed has no date or duration. -->
+    <string name="date_unknown">Date unknown</string>
+    <string name="duration_unknown">Length unknown</string>
+
+    <!-- Subscription button labels. -->
+    <string name="subscribe">Subscribe</string>
+    <string name="unsubscribe">Unsubscribe</string>
+
+    <!-- Audio-player information. -->
+    <string name="nothing_playing">Select an episode to play</string>
+    <string name="now_playing">Playing: %1$s</string>
 </resources>

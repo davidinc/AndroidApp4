@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Represents one podcast episode inside the episode RecyclerView.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="5dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+
+    <!-- Positions the play icon and episode information. -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="84dp"
+        android:padding="12dp">
+
+        <!--
+            Visual indication that selecting the row plays the episode.
+        -->
+        <ImageView
+            android:id="@+id/playIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/play_episode"
+            android:padding="6dp"
+            android:src="@android:drawable/ic_media_play"
+            android:tint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Episode title taken from the RSS feed. -->
+        <TextView
+            android:id="@+id/episodeTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/playIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="How artificial intelligence is changing science" />
+
+        <!-- Episode publication date. -->
+        <TextView
+            android:id="@+id/episodeDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintEnd_toStartOf="@id/episodeDuration"
+            app:layout_constraintStart_toStartOf="@id/episodeTitle"
+            app:layout_constraintTop_toBottomOf="@id/episodeTitle"
+            tools:text="Wed, 9 Sep 2026" />
+
+        <!-- Episode duration, such as 42:15. -->
+        <TextView
+            android:id="@+id/episodeDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintBaseline_toBaselineOf="@id/episodeDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="42:15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

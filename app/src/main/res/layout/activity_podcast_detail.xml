@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Complete detail screen for one selected podcast.
+
+    This layout contains:
+    1. Podcast information
+    2. Subscription button
+    3. Media3 PlayerView
+    4. Episode RecyclerView
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="16dp"
+    tools:context=".ui.detail.PodcastDetailActivity">
+
+    <!-- Large podcast artwork loaded by Glide. -->
+    <ImageView
+        android:id="@+id/podcastArtwork"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:contentDescription="@string/podcast_artwork"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Selected podcast title. -->
+    <TextView
+        android:id="@+id/podcastTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/podcastArtwork"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Weirdest Thing I Learned This Week" />
+
+    <!-- Podcast creator or publishing organization. -->
+    <TextView
+        android:id="@+id/podcastArtist"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/podcastTitle"
+        app:layout_constraintTop_toBottomOf="@id/podcastTitle"
+        tools:text="Popular Science" />
+
+    <!-- Adds or removes the podcast from saved subscriptions. -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/subscribeButton"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/subscribe"
+        app:layout_constraintStart_toStartOf="@id/podcastTitle"
+        app:layout_constraintTop_toBottomOf="@id/podcastArtist" />
+
+    <!--
+        The barrier identifies the lowest part of the header.
+
+        It prevents the player from overlapping either the artwork
+        or the Subscribe button when a podcast has a long title.
+    -->
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/headerBottomBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="podcastArtwork,subscribeButton" />
+
+    <!--
+        Media3 PlayerView provides play, pause, seek and time controls.
+
+        The Kotlin Activity will create ExoPlayer and connect it to
+        this view.
+    -->
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="14dp"
+        android:background="?attr/colorSurfaceVariant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerBottomBarrier"
+        app:show_buffering="when_playing"
+        app:show_shuffle_button="false"
+        app:use_artwork="false"
+        app:use_controller="true" />
+
+    <!-- Shows the title of the episode currently playing. -->
+    <TextView
+        android:id="@+id/nowPlayingText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/nothing_playing"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playerView" />
+
+    <!-- Becomes visible while the RSS feed is loading. -->
+    <ProgressBar
+        android:id="@+id/detailLoadingIndicator"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nowPlayingText" />
+
+    <!-- Displays episode instructions or RSS errors. -->
+    <TextView
+        android:id="@+id/detailStatusText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detailLoadingIndicator"
+        app:layout_constraintTop_toBottomOf="@id/nowPlayingText"
+        tools:text="Select an episode to begin playback." />
+
+    <!-- Displays the episodes parsed from the RSS feed. -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episodeList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailStatusText"
+        tools:listitem="@layout/item_episode" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

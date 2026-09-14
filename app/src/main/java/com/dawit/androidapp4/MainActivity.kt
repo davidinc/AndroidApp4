@@ -6,7 +6,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -16,6 +15,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dawit.androidapp4.databinding.ActivityMainBinding
 import com.dawit.androidapp4.domain.SearchMode
+import com.dawit.androidapp4.ui.detail.PodcastDetailActivity
 import com.dawit.androidapp4.ui.main.PodcastAdapter
 import com.dawit.androidapp4.ui.main.PodcastUiState
 import com.dawit.androidapp4.ui.main.PodcastViewModel
@@ -93,11 +93,11 @@ class MainActivity : AppCompatActivity() {
          * PodcastDetailActivity.
          */
         val podcastAdapter = PodcastAdapter { selectedPodcast ->
-            Toast.makeText(
-                this,
-                "Selected: ${selectedPodcast.collectionName}",
-                Toast.LENGTH_SHORT
-            ).show()
+            val intent = PodcastDetailActivity.newIntent(
+                context = this,
+                podcast = selectedPodcast
+            )
+            startActivity(intent)
         }
 
         binding.podcastList.apply {

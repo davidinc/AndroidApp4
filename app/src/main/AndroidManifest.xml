@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApp4">
         <activity
+            android:name=".ui.detail.PodcastDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
