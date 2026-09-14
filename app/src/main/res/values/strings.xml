@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">SuperPodcast</string>
+
+    <!-- Accessibility description for the podcast image. -->
+    <string name="podcast_artwork">Podcast artwork</string>
+
+    <!-- %1$d, %2$s, and %3$d will be replaced with podcast information. -->
+    <string name="podcast_metadata">%1$d episodes · %2$s · %3$d title words</string>
+
+    <!-- Displayed when Apple does not return a category. -->
+    <string name="unknown_genre">Unknown genre</string>
+
+    <!-- Description displayed below the application name. -->
+    <string name="app_subtitle">Discover podcasts with advanced search filters.</string>
+
+    <!-- Main Apple podcast search field. -->
+    <string name="search_hint">Topic, creator, or keyword</string>
+
+    <!-- Main action buttons. -->
+    <string name="search">Search</string>
+    <string name="my_subscriptions">Subscriptions</string>
+
+    <!-- Advanced-filter input instructions. -->
+    <string name="optional_criteria">Optional filter value</string>
+    <string name="regex_hint">Regex, for example ^The.*Science</string>
+    <string name="minimum_words_hint">Minimum words, for example 4</string>
+
+    <!-- Initial message displayed before the first search. -->
+    <string name="initial_status">Search for a podcast topic to begin.</string>
 </resources>

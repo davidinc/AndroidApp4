@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    This CardView represents one podcast in the RecyclerView.
+
+    layout_width="match_parent" makes the card use the available width.
+    layout_height="wrap_content" makes its height fit its contents.
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="2dp">
+
+    <!--
+        ConstraintLayout positions the image and text inside the card.
+    -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="104dp"
+        android:padding="12dp">
+
+        <!-- Podcast artwork loaded later by Glide. -->
+        <ImageView
+            android:id="@+id/podcastArtwork"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/podcast_artwork"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Podcast title, such as "The Daily Science Show". -->
+        <TextView
+            android:id="@+id/podcastTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/podcastArtwork"
+            app:layout_constraintTop_toTopOf="@id/podcastArtwork"
+            tools:text="The Daily Science Show" />
+
+        <!-- Podcast creator or publishing organization. -->
+        <TextView
+            android:id="@+id/podcastArtist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/podcastTitle"
+            app:layout_constraintTop_toBottomOf="@id/podcastTitle"
+            tools:text="Science Media Canada" />
+
+        <!-- Episode count, category, and calculated title-word count. -->
+        <TextView
+            android:id="@+id/podcastMetadata"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/podcastTitle"
+            app:layout_constraintTop_toBottomOf="@id/podcastArtist"
+            tools:text="125 episodes · Science · 5 title words" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
